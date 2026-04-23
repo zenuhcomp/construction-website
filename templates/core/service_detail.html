@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ service.title }} | Services{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-dark text-white pt-5 pb-5 position-relative overflow-hidden">
+    {% if service.cover_image %}
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: url('{{ service.cover_image.url }}') center/cover no-repeat; opacity: 0.3; filter: blur(2px);"></div>
+    {% endif %}
+    <div class="container pt-5 mt-4 text-center position-relative z-1">
+        {% if service.icon_image %}
+        <div class="mb-4 mx-auto bg-white rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 100px; height: 100px; border: 4px solid var(--primary-color);">
+            <img src="{{ service.icon_image.url }}" alt="{{ service.title }}" class="img-fluid" style="max-height: 60%; object-fit: contain;">
+        </div>
+        {% endif %}
+        <h1 class="fw-bold display-4 mb-3">{{ service.title }}</h1>
+        <p class="fs-4 text-white-50 mx-auto" style="max-width: 800px;">{{ service.short_description }}</p>
+    </div>
+</section>
+
+<section class="section-padding pt-5 bg-white">
+    <div class="container mt-2">
+        <div class="row py-4">
+            <div class="col-lg-8 pe-lg-5">
+                <h2 class="fw-bold mb-4 font-montserrat">Service Overview</h2>
+                <div class="fs-5 text-muted" style="line-height: 1.8;">
+                    {{ service.full_description|linebreaks }}
+                </div>
+                
+                <div class="mt-5 bg-gray p-4 border-start border-warning border-5">
+                    <h4 class="fw-bold">Ready to discuss your project?</h4>
+                    <p class="text-muted mb-0">Our team of experts is ready to provide you with consultation and a comprehensive estimate.</p>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="card border-0 shadow-sm bg-light p-4">
+                    <h4 class="fw-bold mb-4 font-montserrat border-bottom pb-3">Our Core Services</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3"><a href="{% url 'services' %}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center"><span><i class="fas fa-home text-warning me-2"></i> New Home Builds</span> <i class="fas fa-chevron-right small"></i></a></li>
+                        <li class="mb-3"><a href="{% url 'services' %}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center"><span><i class="fas fa-city text-warning me-2"></i> Commercial Construction</span> <i class="fas fa-chevron-right small"></i></a></li>
+                        <li class="mb-3"><a href="{% url 'services' %}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center"><span><i class="fas fa-tools text-warning me-2"></i> Renovations & Extensions</span> <i class="fas fa-chevron-right small"></i></a></li>
+                        <li><a href="{% url 'services' %}" class="text-decoration-none text-dark d-flex justify-content-between align-items-center"><span><i class="fas fa-tasks text-warning me-2"></i> Project Management</span> <i class="fas fa-chevron-right small"></i></a></li>
+                    </ul>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <a href="{% url 'contact' %}" class="btn btn-primary w-100 py-3 fw-bold text-uppercase" style="letter-spacing: 1px;">Request a Quote</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

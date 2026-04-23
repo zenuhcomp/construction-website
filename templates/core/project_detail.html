@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ project.title }} | Case Study{% endblock %}
+
+{% block content %}
+<!-- Project Cover -->
+<section class="position-relative" style="height: 60vh; min-height: 400px; background: {% if project.cover_image %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('{{ project.cover_image.url }}') {% else %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1541888081-30dbce5969ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') {% endif %} center/cover no-repeat fixed;">
+    <div class="container h-100 d-flex flex-column justify-content-center text-white">
+        <span class="badge bg-primary mb-3 align-self-start text-uppercase p-2" style="letter-spacing: 1px;">{{ project.category.name|default:"Case Study" }}</span>
+        <h1 class="display-3 fw-bold mb-3">{{ project.title }}</h1>
+        <p class="fs-4 text-white-50"><i class="fas fa-map-marker-alt text-warning me-2"></i>{{ project.client }}</p>
+    </div>
+</section>
+
+<!-- Project Data -->
+<section class="py-5 bg-white border-bottom shadow-sm">
+    <div class="container py-3">
+        <div class="row text-center text-md-start">
+            <div class="col-md-3 col-6 mb-4 mb-md-0 border-end">
+                <p class="text-muted small text-uppercase fw-bold mb-1">Client</p>
+                <h5 class="fw-bold mb-0">{{ project.client }}</h5>
+            </div>
+            <div class="col-md-3 col-6 mb-4 mb-md-0 border-end">
+                <p class="text-muted small text-uppercase fw-bold mb-1">Category</p>
+                <h5 class="fw-bold mb-0">{{ project.category.name|default:"N/A" }}</h5>
+            </div>
+            <div class="col-md-3 col-6 border-end">
+                <p class="text-muted small text-uppercase fw-bold mb-1">Duration</p>
+                <h5 class="fw-bold mb-0">{{ project.duration }}</h5>
+            </div>
+            <div class="col-md-3 col-6">
+                <p class="text-muted small text-uppercase fw-bold mb-1">Completed</p>
+                <h5 class="fw-bold mb-0">{{ project.completion_date|date:"M Y" }}</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Description -->
+<section class="section-padding bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 pe-lg-5">
+                <h2 class="fw-bold mb-4 font-montserrat">Project Overview</h2>
+                <div class="fs-5 text-muted mb-5" style="line-height: 1.8;">
+                    {{ project.description|linebreaks }}
+                </div>
+                
+                <h3 class="fw-bold mb-4 font-montserrat mt-5">Scope of Work</h3>
+                <div class="bg-white p-4 shadow-sm border-start border-warning border-5 fs-5 text-muted mb-5">
+                    {{ project.scope }}
+                </div>
+                
+                {% if project.testimonial_quote %}
+                <div class="mt-5 p-5 bg-dark text-white text-center rounded position-relative">
+                    <i class="fas fa-quote-left display-4 text-white-50 position-absolute" style="top: -20px; left: 20px; opacity: 0.2;"></i>
+                    <p class="fs-4 font-italic mb-4 mt-2">"{{ project.testimonial_quote }}"</p>
+                    <h6 class="text-warning text-uppercase mb-0" style="letter-spacing: 1px;">- {{ project.client }}</h6>
+                </div>
+                {% endif %}
+            </div>
+            
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                <div class="card border-0 shadow-sm bg-white p-4 position-sticky" style="top: 100px;">
+                    <h4 class="fw-bold mb-4 font-montserrat text-center">Start Your Project</h4>
+                    <p class="text-muted text-center mb-4">We are ready to bring your vision to life with the same level of excellence and dedication.</p>
+                    <a href="{% url 'contact' %}" class="btn btn-primary w-100 py-3 fw-bold text-uppercase mb-3" style="letter-spacing: 1px;">Request a Consultation</a>
+                    <a href="{% url 'portfolio' %}" class="btn btn-outline-dark w-100 py-3 fw-bold text-uppercase" style="letter-spacing: 1px;">Back to Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

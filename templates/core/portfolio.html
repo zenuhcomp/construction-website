@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Our Portfolio{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
+    <div class="container pt-5 mt-4">
+        <h1 class="hero-title fw-bold">Our Work</h1>
+        <p class="fs-5 text-white-50">Showcasing precision, innovation, and quality.</p>
+    </div>
+</section>
+
+<section class="section-padding pt-5 bg-light">
+    <div class="container mt-4">
+        <!-- Filter Logic -->
+        <div class="text-center mb-5">
+            <div class="btn-group flex-wrap" role="group">
+                <button type="button" class="btn btn-outline-dark filter-btn active" data-filter="all">All Projects</button>
+                {% for cat in categories %}
+                <button type="button" class="btn btn-outline-dark filter-btn" data-filter="{{ cat.slug }}">{{ cat.name }}</button>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row g-4" id="portfolio-container">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 position-relative project-item" data-category="{{ project.category.slug|default:'none' }}">
+                <div class="project-card border shadow-sm">
+                    {% if project.cover_image %}
+                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="img-fluid w-100">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1541888081-30dbce5969ce?auto=format&fit=crop&w=1000&q=80" alt="{{ project.title }}" class="img-fluid w-100">
+                    {% endif %}
+                    <div class="project-overlay">
+                        <div class="overlay-text">
+                            <h4 class="fw-bold mb-2">{{ project.title }}</h4>
+                            <p class="fst-italic text-white-50 mb-3">{{ project.category.name|default:"General" }}</p>
+                            <a href="{% url 'project_detail' project.slug %}" class="btn border border-white text-white rounded-0 px-3 py-1">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-4">Case studies coming soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filterValue = this.getAttribute('data-filter');
+                
+                projectItems.forEach(item => {
+                    item.style.transition = "opacity 0.3s ease";
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        setTimeout(() => { item.style.opacity = "1"; }, 10);
+                    } else {
+                        item.style.opacity = "0";
+                        setTimeout(() => { item.style.display = 'none'; }, 300);
+                    }
+                });
+            });
+        });
+    });
+</script>
+{% endblock %}

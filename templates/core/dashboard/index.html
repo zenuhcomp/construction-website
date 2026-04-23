@@ -1,0 +1,143 @@
+{% extends 'core/dashboard/base_dashboard.html' %}
+
+{% block dash_title %}Platform Overview{% endblock %}
+
+{% block dashboard_content %}
+<div class="row g-4 mb-5">
+    <!-- Stat 1 -->
+    <div class="col-xl-3 col-md-6 text-decoration-none">
+        <div class="card stat-card h-100 shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="card-icon-wrapper bg-soft-warning text-warning" style="background: rgba(255, 184, 34, 0.1);">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h2 class="fw-bold mb-1">{{ service_count }}</h2>
+                <p class="text-muted mb-0 fw-600">Active Services</p>
+                <div class="mt-3">
+                    <a href="{% url 'dashboard_services' %}" class="small text-decoration-none text-primary fw-bold">Manage <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Stat 2 -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card h-100 shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="card-icon-wrapper bg-soft-info text-info" style="background: rgba(27, 197, 189, 0.1);">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h2 class="fw-bold mb-1">{{ project_count }}</h2>
+                <p class="text-muted mb-0 fw-600">Portfolio Items</p>
+                <div class="mt-3">
+                    <a href="{% url 'dashboard_projects' %}" class="small text-decoration-none text-primary fw-bold">Manage <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat 3 -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card h-100 shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="card-icon-wrapper bg-soft-success text-success" style="background: rgba(29, 201, 183, 0.1);">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h2 class="fw-bold mb-1">{{ blog_count }}</h2>
+                <p class="text-muted mb-0 fw-600">Published Blogs</p>
+                <div class="mt-3">
+                    <a href="{% url 'dashboard_blogs' %}" class="small text-decoration-none text-primary fw-bold">Manage <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stat 4 - Site Settings Link -->
+    <div class="col-xl-3 col-md-6">
+        <div class="card stat-card h-100 shadow-sm border-0 bg-dark text-white">
+            <div class="card-body p-4">
+                <div class="card-icon-wrapper text-warning" style="background: rgba(255, 255, 255, 0.1);">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h4 class="fw-bold mb-1">Settings</h4>
+                <p class="text-white-50 mb-0">Global Site Config</p>
+                <div class="mt-3">
+                    <a href="{% url 'dashboard_settings' %}" class="small text-decoration-none text-warning fw-bold">Access Panel <i class="fas fa-arrow-right ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-header bg-white py-3 border-bottom-0">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-rocket me-2 text-primary"></i> Quick Start Launchpad</h5>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-muted mb-4">Select an action below to update your digital presence instantly.</p>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <a href="{% url 'dashboard_project_add' %}" class="btn btn-light border p-4 w-100 text-start d-flex align-items-center transition-all hover-shadow">
+                            <i class="fas fa-plus-circle fa-2x text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">New Portfolio Entry</h6>
+                                <small class="text-muted">Upload images and project specs</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'dashboard_blog_add' %}" class="btn btn-light border p-4 w-100 text-start d-flex align-items-center transition-all hover-shadow">
+                            <i class="fas fa-pen-fancy fa-2x text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Write Blog Post</h6>
+                                <small class="text-muted">Share industry insights & news</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'dashboard_service_add' %}" class="btn btn-light border p-4 w-100 text-start d-flex align-items-center transition-all hover-shadow">
+                            <i class="fas fa-hammer fa-2x text-warning me-3"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Add Service Category</h6>
+                                <small class="text-muted">Expand your company's offerings</small>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{% url 'dashboard_settings' %}" class="btn btn-light border p-4 w-100 text-start d-flex align-items-center transition-all hover-shadow">
+                            <i class="fas fa-id-card fa-2x text-dark me-3"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Update Contacts</h6>
+                                <small class="text-muted">Edit phone, email, or social links</small>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm bg-primary text-white p-4 h-100">
+            <h5 class="fw-bold mb-3">Professional Support</h5>
+            <p class="mb-4 text-white-50">Your CMS Dashboard is secured and optimized for mobile-first editing. For technical support regarding your platform expansion, contact the developer team.</p>
+            <div class="mt-auto">
+                <button class="btn btn-white w-100 fw-bold py-2 bg-white text-primary">Documentation</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-shadow:hover {
+        background-color: #fff !important;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        border-color: var(--dash-accent) !important;
+        transform: translateY(-2px);
+    }
+    .transition-all {
+        transition: all 0.2s ease-in-out;
+    }
+</style>
+{% endblock %}

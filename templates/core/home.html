@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container position-relative z-1 text-center text-md-start">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1 class="hero-title fw-bold">{{ site_settings.hero_title }}</h1>
+                <p class="hero-subtitle">{{ site_settings.hero_subtitle }}</p>
+                <div class="d-flex flex-column flex-md-row gap-3">
+                    <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">{{ site_settings.hero_cta_primary }}</a>
+                    <a href="{% url 'portfolio' %}" class="btn btn-outline-light btn-lg">{{ site_settings.hero_cta_secondary }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About / Trust Badges Section -->
+<section class="py-5 bg-white border-bottom shadow-sm">
+    <div class="container py-3">
+        <div class="row align-items-center text-center text-md-start">
+            <div class="col-md-3 col-6 mb-4 mb-md-0 d-flex justify-content-center">
+                <div class="text-center">
+                    <i class="fas fa-hard-hat display-4 text-secondary mb-2"></i>
+                    <h5 class="fw-bold mb-0">{{ site_settings.stat_1_value }}</h5>
+                    <p class="text-muted small">{{ site_settings.stat_1_label }}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 mb-4 mb-md-0 d-flex justify-content-center">
+                <div class="text-center">
+                    <i class="fas fa-award display-4 text-secondary mb-2"></i>
+                    <h5 class="fw-bold mb-0">{{ site_settings.stat_2_value }}</h5>
+                    <p class="text-muted small">{{ site_settings.stat_2_label }}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 d-flex justify-content-center">
+                <div class="text-center">
+                    <i class="fas fa-building display-4 text-secondary mb-2"></i>
+                    <h5 class="fw-bold mb-0">{{ site_settings.stat_3_value }}</h5>
+                    <p class="text-muted small">{{ site_settings.stat_3_label }}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-6 d-flex justify-content-center">
+                <div class="text-center">
+                    <i class="fas fa-shield-alt display-4 text-secondary mb-2"></i>
+                    <h5 class="fw-bold mb-0">{{ site_settings.stat_4_value }}</h5>
+                    <p class="text-muted small">{{ site_settings.stat_4_label }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="section-padding bg-gray">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Expertise</h2>
+            <p class="text-muted fs-5">Comprehensive construction solutions tailored to your needs</p>
+        </div>
+        
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6">
+                <a href="{% url 'service_detail' service.slug %}" class="text-decoration-none text-dark">
+                    <div class="service-card text-center h-100 shadow-sm border p-4">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <div class="service-icon-circle shadow-sm">
+                                {% if service.icon_image %}
+                                    <img src="{{ service.icon_image.url }}" alt="{{ service.title }}">
+                                {% else %}
+                                    <i class="fas fa-hammer text-warning"></i>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <h4 class="fw-bold mb-3">{{ service.title }}</h4>
+                        <p class="text-muted">{{ service.short_description }}</p>
+                        <span class="text-primary fw-bold text-uppercase mt-auto" style="font-size: 0.8rem; letter-spacing: 1px;">Read More <i class="fas fa-arrow-right ms-1"></i></span>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <!-- Mock Data if no db entries -->
+            <div class="col-lg-4 col-md-6">
+                <div class="service-box h-100">
+                    <i class="fas fa-home service-icon"></i>
+                    <h4 class="mb-3 fw-bold">New Home Builds</h4>
+                    <p class="text-muted">Turnkey solutions for your dream home, built to exacting standards.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-box h-100">
+                    <i class="fas fa-hammer service-icon"></i>
+                    <h4 class="mb-3 fw-bold">Commercial Construction</h4>
+                    <p class="text-muted">High-performance spaces designed to drive your business forward.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="service-box h-100">
+                    <i class="fas fa-tools service-icon"></i>
+                    <h4 class="mb-3 fw-bold">Renovations & Extensions</h4>
+                    <p class="text-muted">Transforming existing properties into modern spaces of elegance.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="section-padding bg-white">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5">
+            <div>
+                <h2 class="section-title title-left mb-0">Signature Projects</h2>
+                <p class="text-muted fs-5 mt-3">A showcase of our recent architectural and construction achievements.</p>
+            </div>
+            <a href="{% url 'portfolio' %}" class="btn btn-outline-dark d-none d-md-inline-block">View Full Portfolio</a>
+        </div>
+        
+        <div class="row g-4">
+            {% for project in featured_projects %}
+            <div class="col-md-6 position-relative">
+                <div class="project-card">
+                    {% if project.cover_image %}
+                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="img-fluid w-100">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="{{ project.title }}" class="img-fluid w-100">
+                    {% endif %}
+                    <div class="project-overlay">
+                        <div class="overlay-text">
+                            <h3 class="fw-bold mb-2">{{ project.title }}</h3>
+                            <p class="fst-italic text-white-50 mb-4">{{ project.category.name|default:"Construction" }}</p>
+                            <a href="{% url 'project_detail' project.slug %}" class="btn border border-white text-white rounded-0 px-4 py-2">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Mock projects -->
+            <div class="col-md-6 position-relative">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1541888081-30dbce5969ce?auto=format&fit=crop&w=1000&q=80" alt="Modern Heights" class="img-fluid w-100">
+                    <div class="project-overlay">
+                        <div class="overlay-text">
+                            <h3 class="fw-bold mb-2">Modern Heights Tower</h3>
+                            <p class="fst-italic text-white-50 mb-4">Commercial</p>
+                            <a href="#" class="btn border border-white text-white rounded-0 px-4 py-2 text-decoration-none">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 position-relative">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1000&q=80" alt="Luxury Villa" class="img-fluid w-100">
+                    <div class="project-overlay">
+                        <div class="overlay-text">
+                            <h3 class="fw-bold mb-2">Oceanfront Luxury Villa</h3>
+                            <p class="fst-italic text-white-50 mb-4">Residential</p>
+                            <a href="#" class="btn border border-white text-white rounded-0 px-4 py-2 text-decoration-none">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4 d-md-none">
+            <a href="{% url 'portfolio' %}" class="btn btn-outline-dark">View Full Portfolio</a>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5" style="background-color: var(--primary-color);">
+    <div class="container text-center">
+        <h2 class="text-white fw-bold mb-3 font-montserrat">Ready to Start Your Next Project?</h2>
+        <p class="text-dark fs-5 mb-4">Our experts are ready to turn your vision into reality. Contact us today for a free consultation.</p>
+        <a href="{% url 'contact' %}" class="btn btn-dark btn-lg shadow-sm">Get a Free Quote Now</a>
+    </div>
+</section>
+
+{% endblock %}

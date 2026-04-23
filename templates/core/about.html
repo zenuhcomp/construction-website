@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
+    <div class="container pt-5 mt-4">
+        <h1 class="hero-title fw-bold">{{ about_page.hero_title }}</h1>
+        <p class="fs-5 text-white-50">{{ about_page.hero_subtitle }}</p>
+    </div>
+</section>
+
+<section class="section-padding pt-5">
+    <div class="container mt-4">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                {% if about_page.image %}
+                <img src="{{ about_page.image.url }}" alt="About Us" class="img-fluid shadow-lg rounded">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=80" alt="About Us" class="img-fluid shadow-lg rounded">
+                {% endif %}
+            </div>
+            <div class="col-lg-6 px-lg-5">
+                <h2 class="section-title title-left">{{ about_page.content_title }}</h2>
+                <p class="fs-5 text-dark mt-4">{{ about_page.content_intro }}</p>
+                <div class="text-muted mb-4">{{ about_page.content_body|safe }}</div>
+                <a href="{% url 'contact' %}" class="btn btn-primary fw-bold px-4 py-2">Consult With Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

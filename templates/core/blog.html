@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Our Blog{% endblock %}
+
+{% block content %}
+<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
+    <div class="container pt-5 mt-4">
+        <h1 class="hero-title fw-bold">Construction Insights</h1>
+        <p class="fs-5 text-white-50">Expert perspectives on building, design, and industry trends.</p>
+    </div>
+</section>
+
+<section class="section-padding pt-5 bg-gray">
+    <div class="container mt-4">
+        <div class="row g-4">
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm project-card">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="height:250px; object-fit:cover;">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="card-img-top" alt="{{ post.title }}" style="height:250px; object-fit:cover;">
+                    {% endif %}
+                    <div class="card-body p-4">
+                        <div class="text-muted small mb-2 d-flex justify-content-between">
+                            <span><i class="fas fa-calendar-alt me-1"></i> {{ post.publish_date|date:"F j, Y" }}</span>
+                            <span><i class="fas fa-user ms-3 me-1"></i> {{ post.author }}</span>
+                        </div>
+                        <h4 class="card-title fw-bold mb-3 font-montserrat">{{ post.title }}</h4>
+                        <p class="card-text text-muted">{{ post.content|striptags|truncatewords:20 }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 p-4 pt-0">
+                        <a href="{% url 'blog_detail' post.slug %}" class="btn btn-outline-primary fw-bold text-uppercase" style="letter-spacing: 1px; font-size: 0.85rem;">Read Article</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-4">Content for this page is coming soon.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
