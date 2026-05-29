@@ -3,20 +3,20 @@
 {% block title %}Our Services{% endblock %}
 
 {% block content %}
-<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
-    <div class="container pt-5 mt-4">
-        <h1 class="hero-title fw-bold">Our Services</h1>
-        <p class="fs-5 text-white-50">Comprehensive general contracting and construction management.</p>
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-header-title">Our Services</h1>
+        <p class="page-header-subtitle">Comprehensive general contracting and construction management.</p>
     </div>
 </section>
 
-<section class="section-padding pt-5 bg-gray">
-    <div class="container mt-4">
+<section class="section-padding bg-gray">
+    <div class="container">
         <div class="row g-4">
             {% for service in services %}
             <div class="col-lg-4 col-md-6">
-                <a href="{% url 'service_detail' service.slug %}" class="text-decoration-none text-dark">
-                    <div class="service-card bg-white h-100 shadow-sm p-5 border text-center js-scroll slide-up">
+                <a href="{% url 'service_detail' service.slug %}" class="text-decoration-none text-dark d-block h-100">
+                    <div class="service-card bg-white p-5 text-center js-scroll slide-up">
                         <div class="mb-4 d-flex justify-content-center">
                             <div class="service-icon-circle shadow-sm">
                                 {% if service.icon_image %}

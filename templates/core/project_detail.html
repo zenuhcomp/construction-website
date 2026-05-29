@@ -4,11 +4,11 @@
 
 {% block content %}
 <!-- Project Cover -->
-<section class="position-relative" style="height: 60vh; min-height: 400px; background: {% if project.cover_image %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('{{ project.cover_image.url }}') {% else %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1541888081-30dbce5969ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') {% endif %} center/cover no-repeat fixed;">
-    <div class="container h-100 d-flex flex-column justify-content-center text-white">
-        <span class="badge bg-primary mb-3 align-self-start text-uppercase p-2" style="letter-spacing: 1px;">{{ project.category.name|default:"Case Study" }}</span>
-        <h1 class="display-3 fw-bold mb-3">{{ project.title }}</h1>
-        <p class="fs-4 text-white-50"><i class="fas fa-map-marker-alt text-warning me-2"></i>{{ project.client }}</p>
+<section class="position-relative d-flex align-items-center" style="height: 60vh; min-height: 400px; background: {% if project.cover_image %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('{{ project.cover_image.url }}') {% else %}linear-gradient(rgba(26, 26, 26, 0.6), rgba(26, 26, 26, 0.6)), url('https://images.unsplash.com/photo-1541888081-30dbce5969ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') {% endif %} center/cover no-repeat; border-bottom: 3px solid var(--primary-color);">
+    <div class="container text-white py-5">
+        <span class="badge bg-primary mb-3 text-uppercase p-2" style="letter-spacing: 1px;">{{ project.category.name|default:"Case Study" }}</span>
+        <h1 class="display-3 fw-bold mb-3 font-montserrat">{{ project.title }}</h1>
+        <p class="fs-4 text-white-50 mb-0"><i class="fas fa-map-marker-alt text-warning me-2"></i>{{ project.client }}</p>
     </div>
 </section>
 

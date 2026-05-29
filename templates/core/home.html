@@ -65,8 +65,8 @@
         <div class="row g-4">
             {% for service in services %}
             <div class="col-lg-4 col-md-6">
-                <a href="{% url 'service_detail' service.slug %}" class="text-decoration-none text-dark">
-                    <div class="service-card text-center h-100 shadow-sm border p-4">
+                <a href="{% url 'service_detail' service.slug %}" class="text-decoration-none text-dark d-block h-100">
+                    <div class="service-card text-center p-4">
                         <div class="mb-4 d-flex justify-content-center">
                             <div class="service-icon-circle shadow-sm">
                                 {% if service.icon_image %}
@@ -85,22 +85,34 @@
             {% empty %}
             <!-- Mock Data if no db entries -->
             <div class="col-lg-4 col-md-6">
-                <div class="service-box h-100">
-                    <i class="fas fa-home service-icon"></i>
+                <div class="service-card text-center p-4 h-100">
+                    <div class="mb-4 d-flex justify-content-center">
+                        <div class="service-icon-circle shadow-sm">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
                     <h4 class="mb-3 fw-bold">New Home Builds</h4>
                     <p class="text-muted">Turnkey solutions for your dream home, built to exacting standards.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-box h-100">
-                    <i class="fas fa-hammer service-icon"></i>
+                <div class="service-card text-center p-4 h-100">
+                    <div class="mb-4 d-flex justify-content-center">
+                        <div class="service-icon-circle shadow-sm">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                    </div>
                     <h4 class="mb-3 fw-bold">Commercial Construction</h4>
                     <p class="text-muted">High-performance spaces designed to drive your business forward.</p>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6">
-                <div class="service-box h-100">
-                    <i class="fas fa-tools service-icon"></i>
+                <div class="service-card text-center p-4 h-100">
+                    <div class="mb-4 d-flex justify-content-center">
+                        <div class="service-icon-circle shadow-sm">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
                     <h4 class="mb-3 fw-bold">Renovations & Extensions</h4>
                     <p class="text-muted">Transforming existing properties into modern spaces of elegance.</p>
                 </div>

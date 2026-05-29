@@ -8,14 +8,24 @@
 }
 
 body {
-    font-family: 'PT Serif', serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
     color: var(--text-dark);
     line-height: 1.8;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .nav-link {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     font-weight: 700;
 }
 
@@ -29,6 +39,9 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .nav-link {
     font-size: 1.8rem;
     color: var(--primary-color) !important;
     letter-spacing: 1px;
+}
+.navbar-brand i {
+    color: var(--primary-color) !important;
 }
 .nav-link {
     color: var(--text-light) !important;
@@ -112,17 +125,19 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .nav-link {
 
 /* Cards & Portfolio */
 .project-card {
+    position: relative;
     border: none;
     border-radius: 0;
     overflow: hidden;
     margin-bottom: 30px;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 .project-card img {
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
     height: 300px;
     object-fit: cover;
 }
@@ -131,26 +146,33 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .nav-link {
 }
 .project-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    right: 0;
-    background: rgba(26, 26, 26, 0.9);
-    overflow: hidden;
     width: 100%;
-    height: 0;
-    transition: .5s ease;
+    height: 100%;
+    background: rgba(26, 26, 26, 0.85);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 2;
 }
 .project-card:hover .project-overlay {
-    height: 100%;
+    opacity: 1;
+    visibility: visible;
 }
 .overlay-text {
     color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     text-align: center;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     width: 100%;
+}
+.project-card:hover .overlay-text {
+    transform: translateY(0);
 }
 
 /* Services */
@@ -170,6 +192,52 @@ h1, h2, h3, h4, h5, h6, .navbar-brand, .btn, .nav-link {
     font-size: 3rem;
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+.service-card {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    border-radius: 0;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--primary-color) !important;
+}
+
+/* Page Header Section */
+.page-header {
+    background-color: var(--bg-dark);
+    color: white;
+    text-align: center;
+    padding: 100px 0 60px 0;
+    position: relative;
+    border-bottom: 3px solid var(--primary-color);
+}
+.page-header-title {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+.page-header-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Footer */

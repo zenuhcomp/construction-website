@@ -3,19 +3,19 @@
 {% block title %}Our Blog{% endblock %}
 
 {% block content %}
-<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
-    <div class="container pt-5 mt-4">
-        <h1 class="hero-title fw-bold">Construction Insights</h1>
-        <p class="fs-5 text-white-50">Expert perspectives on building, design, and industry trends.</p>
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-header-title">Construction Insights</h1>
+        <p class="page-header-subtitle">Expert perspectives on building, design, and industry trends.</p>
     </div>
 </section>
 
-<section class="section-padding pt-5 bg-gray">
-    <div class="container mt-4">
+<section class="section-padding bg-gray">
+    <div class="container">
         <div class="row g-4">
             {% for post in posts %}
             <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100 border-0 shadow-sm project-card">
+                <div class="card h-100 border-0 shadow-sm hover-lift">
                     {% if post.image %}
                     <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="height:250px; object-fit:cover;">
                     {% else %}

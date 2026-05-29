@@ -3,15 +3,15 @@
 {% block title %}Our Portfolio{% endblock %}
 
 {% block content %}
-<section class="section-padding bg-dark text-white text-center pt-5 pb-5">
-    <div class="container pt-5 mt-4">
-        <h1 class="hero-title fw-bold">Our Work</h1>
-        <p class="fs-5 text-white-50">Showcasing precision, innovation, and quality.</p>
+<section class="page-header">
+    <div class="container">
+        <h1 class="page-header-title">Our Work</h1>
+        <p class="page-header-subtitle">Showcasing precision, innovation, and quality.</p>
     </div>
 </section>
 
-<section class="section-padding pt-5 bg-light">
-    <div class="container mt-4">
+<section class="section-padding bg-light">
+    <div class="container">
         <!-- Filter Logic -->
         <div class="text-center mb-5">
             <div class="btn-group flex-wrap" role="group">
@@ -24,8 +24,8 @@
 
         <div class="row g-4" id="portfolio-container">
             {% for project in projects %}
-            <div class="col-lg-4 col-md-6 position-relative project-item" data-category="{{ project.category.slug|default:'none' }}">
-                <div class="project-card border shadow-sm">
+            <div class="col-lg-4 col-md-6 project-item" data-category="{{ project.category.slug|default:'none' }}">
+                <div class="project-card shadow-sm">
                     {% if project.cover_image %}
                     <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" class="img-fluid w-100">
                     {% else %}
